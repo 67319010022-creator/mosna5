@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <h1 class="center-title">ระบบจอดรถอัจฉริยะ</h1>
+        
+        <div class="data-row"> 
+            
+            <div class="card pressure-card">
+                <h3>ความดัน (Pressure)</h3>
+                <p class="data-value" id="pressure-value">...กำลังโหลด...</p>
+                <p class="unit">hPa</p>
+            </div>
+            
+            <div class="card temp-card">
+                <h3>อุณหภูมิ (Temperature)</h3>
+                <p class="data-value" id="temp-value">...กำลังโหลด...</p>
+                <p class="unit">°C</p>
+            </div>
+            
+            <div class="card humid-card">
+                <h3>ความชื้น (Humidity)</h3>
+                <p class="data-value" id="humid-value">...กำลังโหลด...</p>
+                <p class="unit">%</p>
+            </div>
+            
+            
+        </div>
+
+        <div class="parking-zone">
+            <h2 class="center-subtitle">📷 กล้องหลัก (มุมมอง 5 ช่องจอด)</h2> 
+            <div class="main-camera-view divided-view large-feed">
+                <img class="main-realtime-feed" id="main-camera-feed" src="https://via.placeholder.com/1200x675?text=Live+Parking+Camera" alt="Live Parking Camera Feed">
+                
+                <div class="divider div-1" id="p-01">P-01</div>
+                <div class="divider div-2" id="p-02">P-02</div>
+                <div class="divider div-3" id="p-03">P-03</div> 
+                <div class="divider div-4" id="p-04">P-04</div> 
+                <div class="divider div-5" id="p-05">P-05</div>
+            </div>
+        </div>
+    </div> 
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
