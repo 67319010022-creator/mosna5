@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th"> <!-- กำหนดภาษาของเว็บเป็นภาษาไทย -->
+
+<head>
+    <meta charset="UTF-8"> <!-- กำหนดรูปแบบตัวอักษร -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title> <!-- ชื่อแท็บบนเบราว์เซอร์ -->
+
+    <link rel="stylesheet" href="style.css"> <!-- โหลดไฟล์ CSS สำหรับตกแต่งหน้าเว็บ -->
+ <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- โหลด Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <!-- โหลด Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+
+<body>
+
+    <div class="container"> <!-- กล่องหลักของ UI ทั้งหมด -->
+
+        <h1 class="center-title">ระบบจอดรถอัจฉริยะ</h1> <!-- หัวข้อใหญ่ของหน้าเว็บ -->
+
+        <div class="data-row"> <!-- แถวสำหรับแสดงค่าของเซนเซอร์ -->
+
+            <!-- การ์ดแสดงความดัน -->
+            <div class="card pressure-card">
+                <h3>ความดัน (Pressure)</h3>
+                <p class="data-value" id="pressure-value">...กำลังโหลด...</p> <!-- รับค่าจาก Firebase -->
+                <p class="unit">hPa</p>
+            </div>
+
+            <!-- การ์ดแสดงอุณหภูมิ -->
+            <div class="card temp-card">
+                <h3>อุณหภูมิ (Temperature)</h3>
+                <p class="data-value" id="temp-value">...กำลังโหลด...</p> <!-- รับค่าจาก Firebase -->
+                <p class="unit">°C</p>
+            </div>
+
+            <!-- การ์ดแสดงความชื้น -->
+            <div class="card humid-card">
+                <h3>ความชื้น (Humidity)</h3>
+                <p class="data-value" id="humid-value">...กำลังโหลด...</p> <!-- รับค่าจาก Firebase -->
+                <p class="unit">%</p>
+            </div>
+
+        </div>
+
+        <!-- โซนกล้องจอดรถ -->
+        <div class="parking-zone">
+            <h2 class="center-subtitle">📷 กล้องหลัก (มุมมอง 5 ช่องจอด)</h2>
+
+            <!-- กรอบภาพกล้องหลัก พร้อมแบ่ง 5 ช่องจอด -->
+            <div class="main-camera-view divided-view large-feed">
+
+                <!-- ภาพกล้องหลักแบบ Live (สามารถเปลี่ยนเป็น RTSP หรือ Firebase Storage ได้) -->
+                <img class="main-realtime-feed" id="main-camera-feed"
+                    src="https://via.placeholder.com/1200x675?text=Live+Parking+Camera" alt="Live Parking Camera Feed">
+
+                <!-- เส้นแบ่งช่องจอดรถแต่ละช่อง -->
+                <div class="divider div-1" id="p-01">P-01</div>
+                <div class="divider div-2" id="p-02">P-02</div>
+                <div class="divider div-3" id="p-03">P-03</div>
+                <div class="divider div-4" id="p-04">P-04</div>
+                <div class="divider div-5" id="p-05">P-05</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- โหลดไฟล์ JavaScript สำหรับจัดการ Firebase และ UI -->
+
+</body>
+
+</html>

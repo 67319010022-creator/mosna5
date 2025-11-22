@@ -1,0 +1,190 @@
+/* ===============================
+   GLOBAL & THEME (สไตล์พื้นฐาน)
+================================= */
+body {
+    font-family: 'Kanit';           /* ตั้งฟอนต์ทั้งหมดของเว็บ */
+    background-color: #212529;           /* สีพื้นหลังเข้มแบบดาร์กโหมด */
+    margin: 0;
+    padding: 20px;
+    color: #f8f9fa;                      /* สีตัวอักษรหลัก */
+    min-height: 100vh;                   /* ให้หน้าสูงเต็มจอ */
+}
+
+.container {
+    max-width: 1200px;                   /* จำกัดความกว้างสูงสุดของเนื้อหา */
+    margin: 0 auto;                      /* จัดกึ่งกลางหน้า */
+    background-color: rgba(0, 0, 0, 0.3);/* กล่องพื้นหลังโปร่งแบบแก้ว */
+    backdrop-filter: blur(5px);          /* ทำพื้นหลังเบลอ */
+    padding: 30px;
+    border-radius: 15px;                 /* ขอบโค้ง */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* เงาให้ลอยขึ้น */
+    border: 1px solid rgba(255,255,255,0.1); /* ขอบบางแบบโปร่ง */
+}
+
+/* ===============================
+   HEADER TEXT (หัวข้อ)
+================================= */
+.center-title {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 40px;
+    font-weight: 800;
+    font-size: 3em;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* เงาสีฟ้า */
+}
+
+.center-subtitle {
+    text-align: center;
+    color: #adb5bd;
+    margin: 30px 0 15px 0;
+    font-size: 1.2em;
+}
+
+/* ===============================
+   SENSOR CARDS (กล่องแสดงเซนเซอร์)
+================================= */
+.data-row {
+    display: flex;                       /* เรียงกล่องแนวนอน */
+    justify-content: space-between;      /* กระจายช่องว่างเท่ากัน */
+    gap: 20px;                           /* ระยะห่างระหว่างกล่อง */
+    margin-bottom: 40px;
+    flex-wrap: wrap;                     /* ถ้าจอแคบ ให้ลงบรรทัดใหม่ */
+}
+
+.card {
+    flex: 1 1 calc(20% - 16px);          /* ให้กินพื้นที่ 20% ของแถว */
+    min-width: 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    background-color: rgba(45,45,45,0.9);/* สีพื้นเข้ม */
+    padding: 15px 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #007bff;           /* ขอบสีน้ำเงิน */
+    box-shadow: 0 0 15px rgba(0,123,255,0.2);
+    transition: all 0.3s ease;           /* ทำแอนิเมชันนุ่ม */
+}
+
+.card:hover {
+    transform: scale(1.05);              /* ขยายเบา ๆ เมื่อเอาเมาส์ชี้ */
+    box-shadow: 0 0 20px rgba(0,123,255,0.5);
+    cursor: pointer;
+}
+
+.card h3 {
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+    color: #adb5bd;                      /* หัวข้อสีเทา */
+}
+
+.data-value {
+    font-size: 2.2em;                    /* ค่าตัวเลขใหญ่ */
+    font-weight: bold;
+    margin: 5px 0;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.unit {
+    font-size: 0.8em;
+    color: #adb5bd;
+    white-space: nowrap;
+}
+
+/* ===============================
+   CAMERA VIEW & PARKING LINES
+================================= */
+.main-camera-view {
+    position: relative;                  /* ใช้ติดป้ายตำแหน่ง */
+    width: 100%;
+    padding-bottom: 56.25%;              /* อัตราส่วน 16:9 */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 12px;
+    border: 3px solid #007bff;
+    box-shadow: 0 0 25px rgba(0,123,255,0.5);
+}
+
+.main-realtime-feed {
+    position: absolute;                  /* ให้ภาพเต็มพื้นที่ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                   /* ครอบแบบไม่ยืดภาพ */
+    border-radius: 9px;
+}
+
+/* ป้ายช่องจอด */
+.divider {
+    position: absolute;
+    top: 15px;                           /* บนสุดของภาพ */
+    color: #fff;
+    background-color: rgba(0,0,0,0.7);   /* ป้ายสีดำโปร่ง */
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    z-index: 10;                          /* ให้อยู่เหนือภาพ */
+    border: 1px solid #fff;
+    transition: all 0.3s;
+    transform: translateX(-50%);         /* จัดให้ป้ายอยู่ตรงกลางตำแหน่งที่กำหนด */
+}
+
+/* ===============================
+   ตำแหน่งของช่องจอด P01–P05
+================================= */
+.div-1 { left: 5%; }
+.div-2 { left: 25%; }
+.div-3 { left: 45%; }
+.div-4 { left: 65%; }
+.div-5 { left: 85%; }
+
+/* ===============================
+   สีสถานะ: ว่าง / ไม่ว่าง
+================================= */
+.divider.available {                     /* ว่าง = เขียว */
+    background-color: rgba(30,200,30,0.8);
+    border-color: #3f0;
+    box-shadow: 0 0 10px rgba(0,255,0,0.6);
+}
+
+.divider.occupied {                      /* ไม่ว่าง = แดง */
+    background-color: rgba(200,30,30,0.8);
+    border-color: #f00;
+    box-shadow: 0 0 10px rgba(255,0,0,0.6);
+}
+
+/* ===============================
+   RESPONSIVE (รองรับมือถือ)
+================================= */
+@media (max-width: 992px) {
+    .data-row {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .card {
+        flex: 1 1 calc(50% - 10px);      /* ลดเหลือ 2 กล่องต่อแถว */
+        min-width: unset;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        flex: 1 1 100%;                  /* เหลือ 1 กล่องต่อแถว */
+    }
+
+    .center-title {
+        font-size: 2em;                  /* หัวข้อเล็กลง */
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
