@@ -1,0 +1,31 @@
+ body {
+            font-family: 'Kanit', sans-serif;
+            background: #0f2027;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .table {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-back {
+            margin-bottom: 20px;
+            color: #f1c40f;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-back:hover {
+            text-decoration: underline;
+        }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - Giant Dutch Goldfish Farm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="his.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> กลับหน้าควบคุมหลัก</a>
+        <h2 class="mb-4">บันทึกสถิติย้อนหลัง (Data Logging)</h2>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="stat-card">
+                    <h4><i class="fas fa-chart-line"></i> กราฟแสดงแนวโน้มย้อนหลัง</h4>
+                    <div id="historyChart"></div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="stat-card">
+                    <h4><i class="fas fa-table"></i> ตารางบันทึกข้อมูลล่าสุด (Real-time Logs)</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>เวลาบันทึก</th>
+                                    <th>อุณหภูมิ (°C)</th>
+                                    <th>ความชื้น (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="statTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="his.js">
+    
+</script>
+</body>
+
+</html>

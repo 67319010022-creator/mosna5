@@ -1,0 +1,32 @@
+ body {
+     font-family: 'Kanit', sans-serif;
+     background: #0f2027;
+     color: white;
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .login-card {
+     background: rgba(255, 255, 255, 0.05);
+     border-radius: 15px;
+     padding: 30px;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     width: 100%;
+     max-width: 400px;
+     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+ }
+
+ .form-control {
+     background: rgba(255, 255, 255, 0.1);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     color: white;
+ }
+
+ .form-control:focus {
+     background: rgba(255, 255, 255, 0.2);
+     color: white;
+     border-color: #f1c40f;
+     box-shadow: none;
+ }
