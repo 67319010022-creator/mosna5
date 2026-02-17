@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ตั้งค่าเงื่อนไข - Goldfish Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #1a262f; color: white; font-family: 'Kanit', sans-serif; }
+        .admin-nav { background: #243441; padding: 15px; border-radius: 0 0 20px 20px; margin-bottom: 30px; }
+        .nav-btn { color: #8ba2b0; text-decoration: none; margin: 0 15px; font-weight: 500; cursor: pointer; }
+        .nav-btn.active { color: #ffc107; border-bottom: 2px solid #ffc107; padding-bottom: 5px; }
+        .card-custom { background: #243441; border-radius: 20px; padding: 25px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .input-custom { background: #ffffff !important; border: none; border-radius: 8px; color: #333 !important; padding: 10px; }
+        .btn-gold { background: #ffc107; color: #1a262f; border: none; border-radius: 8px; padding: 12px; width: 100%; font-weight: bold; transition: 0.3s; }
+        .btn-gold:hover { background: #e0a800; transform: translateY(-2px); }
+        .status-check { color: #ffc107; font-size: 0.9rem; }
+        .text-warning { color: #ffc107 !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-nav d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 text-warning"><i class="fas fa-fish"></i> Goldfish Farm <span class="fw-light fs-5 text-white">| ตั้งค่าเงื่อนไขระบบ</span></h4>
+            <div>
+                <a href="admin_users.html" class="nav-btn">ข้อมูลผู้ใช้</a>
+                <a href="admin_info.html" class="nav-btn">ข้อมูลแอดมิน</a>
+                <a href="admin_config.html" class="nav-btn active">ตั้งค่าเงื่อนไข</a>
+                <a href="index.html" class="btn btn-sm btn-outline-warning ms-3">กลับหน้าหลัก</a>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+                <div class="card-custom text-center">
+                    <h5 class="mb-4 text-warning"><i class="fas fa-thermometer-half"></i> อุณหภูมิ</h5>
+                    <p class="text-secondary small">Sensor : <span id="currentTemp">--</span> °C</p>
+                    <input type="number" id="inputTemp" class="form-control input-custom text-center mb-3" >
+                    
+                    <button onclick="updateTemp()" class="btn-gold">บันทึกค่าอุณหภูมิ</button>
+                    
+                    <div class="status-check mt-3"><i class="fas fa-check-square"></i> พร้อมใช้งาน</div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card-custom text-center">
+                    <h5 class="mb-4 text-warning"><i class="fas fa-tint"></i> ความชื้น</h5>
+                    <p class="text-secondary small">Sensor: <span id="currentHumid">--</span> %</p>
+                    <input type="number" id="inputHumid" class="form-control input-custom text-center mb-3" >
+                    
+                    <button onclick="updateHumid()" class="btn-gold">บันทึกค่าความชื้น</button>
+                    
+                    <div class="status-check mt-3"><i class="fas fa-check-square"></i> พร้อมใช้งาน</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Goldfish Farm Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: #0f2027;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .role-selector {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 25px;
+        }
+        .role-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .role-btn.active {
+            background: #4db6ac;
+            color: white;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: #ffc107;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card text-center">
+        <h3 class="mb-4">🔐 เข้าสู่ระบบฟาร์ม</h3>
+
+        <div class="role-selector">
+            <button id="btn-user-role" class="role-btn active" onclick="setRole('user')">สมาชิก</button>
+            <button id="btn-admin-role" class="role-btn" onclick="setRole('admin')">แอดมิน</button>
+        </div>
+
+        <input type="email" id="email" class="form-control mb-3" placeholder="อีเมล">
+        <input type="password" id="password" class="form-control mb-3" placeholder="รหัสผ่าน">
+
+        <button onclick="login()" class="btn btn-warning w-100 mb-2 fw-bold">Login</button>
+        <button id="btn-reg-ui" onclick="register()" class="btn btn-outline-light w-100 mb-3">สมัครสมาชิกใหม่</button>
+
+        <p id="msg" class="mt-2" style="font-size: 0.9rem; color: #ff6b6b;"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

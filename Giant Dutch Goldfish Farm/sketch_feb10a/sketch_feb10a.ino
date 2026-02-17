@@ -1,14 +1,14 @@
 #include <ESP8266WiFi.h>
-#include <WiFiClientSecure.h> // สำหรับ Telegram SSL
+#include <WiFiClientSecure.h> 
 #include <FirebaseESP8266.h>
 #include <UniversalTelegramBot.h>
 #include <ArduinoJson.h>
 
-// --- 10.1 ตั้งค่า Wi-Fi ---
+
 #define WIFI_SSID "iPhone ของ Nithithat"
 #define WIFI_PASSWORD "Scarlett13"
 
-// --- 10.2 ตั้งค่า Firebase ---
+
 #define FIREBASE_HOST "giant-dutch-goldfish-farm-default-rtdb.firebaseio.com"
 #define FIREBASE_AUTH "MdYlFx4HtdyDWLXLJ38SfK4TLYgfzz8ufs2iJ95u"
 
@@ -24,9 +24,9 @@ UniversalTelegramBot bot(BOTtoken, client);
 
 unsigned long lastSendTime = 0;
 unsigned long lastTimeBotRan = 0;
-const int botRequestDelay = 1000; // เช็กข้อความ Telegram ทุก 1 วินาที
+const int botRequestDelay = 1000; 
 
-// ฟังก์ชันจัดการคำสั่งจาก Telegram (11.1 - 11.7)
+
 void handleNewMessages(int numNewMessages) {
   for (int i = 0; i < numNewMessages; i++) {
     String chat_id = String(bot.messages[i].chat_id);
@@ -35,23 +35,23 @@ void handleNewMessages(int numNewMessages) {
     String text = bot.messages[i].text;
     String reply = "";
 
-    if (text == "/stemp") { // 11.2
+    if (text == "/stemp") {
       Firebase.getFloat(firebaseData, "/sensor/temp");
       reply = "อุณหภูมิปัจจุบัน : " + String(firebaseData.floatData()) + " °C";
     } 
-    else if (text == "/shumid") { // 11.3
+    else if (text == "/shumid") { 
       Firebase.getFloat(firebaseData, "/sensor/humid");
       reply = "ความชื้นปัจจุบัน : " + String(firebaseData.floatData()) + " %";
     }
-    else if (text == "/ctemp") { // 11.4
+    else if (text == "/ctemp") { 
       Firebase.getFloat(firebaseData, "/condition/temp");
       reply = "เงื่อนไขอุณหภูมิ : " + String(firebaseData.floatData()) + " °C";
     }
-    else if (text == "/chumid") { // 11.5
+    else if (text == "/chumid") { 
       Firebase.getFloat(firebaseData, "/condition/humid");
       reply = "เงื่อนไขความชื้น : " + String(firebaseData.floatData()) + " %";
     }
-    else if (text == "/all") { // 11.1
+    else if (text == "/all") { 
       float st, sh, ct, ch;
       Firebase.getFloat(firebaseData, "/sensor/temp"); st = firebaseData.floatData();
       Firebase.getFloat(firebaseData, "/sensor/humid"); sh = firebaseData.floatData();
@@ -63,12 +63,12 @@ void handleNewMessages(int numNewMessages) {
       reply += "⚙️ Cond Temp: " + String(ct) + " °C\n";
       reply += "⚙️ Cond Humid: " + String(ch) + " %";
     }
-    else if (text == "/on") { // 11.6
+    else if (text == "/on") { 
       digitalWrite(LED_BUILTIN, LOW); 
       Firebase.setInt(firebaseData, "/switch/status", 1);
       reply = "เปิดไฟ LED และอัปเดตหน้าเว็บแล้ว 💡";
     }
-    else if (text == "/off") { // 11.7
+    else if (text == "/off") { 
       digitalWrite(LED_BUILTIN, HIGH);
       Firebase.setInt(firebaseData, "/switch/status", 0);
       reply = "ปิดไฟ LED และอัปเดตหน้าเว็บแล้ว 🌑";
@@ -81,7 +81,7 @@ void handleNewMessages(int numNewMessages) {
 void setup() {
   Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
-  client.setInsecure(); // จำเป็นสำหรับ Telegram บน ESP8266
+  client.setInsecure(); 
 
   // เชื่อมต่อ Wi-Fi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -100,7 +100,7 @@ void setup() {
 }
 
 void loop() {
-  // --- 10.3 ส่งข้อมูลสุ่มและบันทึกประวัติทุก 10 วินาที ---
+  
   if (millis() - lastSendTime > 10000) {
     lastSendTime = millis();
     float temp = random(250, 351) / 10.0;

@@ -16,7 +16,135 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+  font-family: 'Kanit', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  min-height: 100vh;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 25px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 520px;
+}
+
+.chart-card {
+  min-height: 420px;
+}
+
+.gauge-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  color: #f1c40f;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.btn-history {
+  background: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+  border: 1px solid #f1c40f;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.btn-history:hover {
+  background: #f1c40f;
+  color: #000;
+  
+}
+
+/* Checkbox Style (Uiverse) */
+.checkbox-wrapper input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-wrapper label {
+  --size: 70px;
+  position: relative;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  margin: 0 auto;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.checkbox-wrapper label:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 70%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.checkbox-wrapper input:checked+label:before {
+  width: 0;
+  height: 0;
+}
+
+.checkbox-wrapper .tick_mark {
+  position: absolute;
+  top: 15px;
+  left: 22px;
+  width: 35px;
+  height: 35px;
+  transform: rotate(-40deg);
+}
+
+.checkbox-wrapper .tick_mark:before,
+.checkbox-wrapper .tick_mark:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-radius: 2px;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.checkbox-wrapper .tick_mark:before {
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  height: 20px;
+}
+
+.checkbox-wrapper .tick_mark:after {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.checkbox-wrapper input:checked+label .tick_mark:before,
+.checkbox-wrapper input:checked+label .tick_mark:after {
+  opacity: 1;
+}
+    </style>
 </head>
 
 <body>
