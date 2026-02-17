@@ -1,0 +1,395 @@
+:root {
+    /* ========================================= */
+    /* 1. การตั้งค่าตัวแปรสีและธีม (Theme Config) */
+    /* 🎨 ถ้าอาจารย์ให้เปลี่ยนสีธีม แก้ตรงนี้ที่เดียวจบครับ */
+    /* ========================================= */
+    --primary: #3b82f6;       /* สีฟ้าหลัก (ปุ่ม, ไอคอน) */
+    --primary-light: #eff6ff; /* สีฟ้าอ่อน (พื้นหลังไอคอน) */
+    --secondary: #6366f1;     /* สีม่วงคราม (ใช้ไล่เฉดสี) */
+    --bg-body: #f3f4f6;       /* สีพื้นหลังเว็บ */
+    --bg-card: #ffffff;       /* สีขาว (พื้นหลังการ์ด) */
+    --text-main: #1f2937;     /* สีตัวหนังสือหลัก */
+    --text-sub: #6b7280;      /* สีตัวหนังสือรอง */
+
+    --success: #10b981;       /* สีเขียว (สถานะว่าง) */
+    --danger: #ef4444;        /* สีแดง (สถานะไม่ว่าง) */
+
+    /* ตั้งค่าเงาและความโค้งของมุม */
+    --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --radius-xl: 24px;        /* มุมโค้งมาก */
+    --radius-md: 16px;        /* มุมโค้งปานกลาง */
+}
+
+* {
+    box-sizing: border-box; /* คำนวณขนาดกล่องรวมขอบ */
+}
+
+body {
+  
+    font-family: 'Prompt', sans-serif; 
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    min-height: 100vh; /* ความสูงเต็มหน้าจอ */
+    display: flex;     /* ใช้ Flexbox เพื่อจัดกึ่งกลาง */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* คอนเทนเนอร์หลัก: เปรียบเสมือนแผ่นกระดาษสีขาวตรงกลาง */
+.container {
+    width: 100%;
+    /* เต็มจอ" แก้ 1200px เป็น 100% */
+    max-width: 1200px; 
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-soft); 
+    position: relative;
+    overflow: hidden;
+}
+
+/* ตกแต่งพื้นหลัง: วงกลมสีจางๆ มุมขวาบน */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+    pointer-events: none;
+}
+
+/* ========================================= */
+/* 3. ส่วนหัว (Header) - โลโก้, ชื่อ, เวลา */
+/* ========================================= */
+header {
+    display: flex;
+    /* 📌 ถ้าจะย้ายชื่อไปไว้ "ซ้ายสุด" ให้เปลี่ยน flex-end เป็น space-between */
+    justify-content: flex-end; 
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f3f4f6; 
+    position: relative;        
+    min-height: 60px;          
+}
+
+/* ชื่อโปรเจกต์ตรงกลาง */
+.center-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    /* 📌 [สำคัญ] ถ้าจะย้ายชื่อไปซ้ายหรือขวา ให้ "ลบ" 3 บรรทัดข้างล่างนี้ทิ้งครับ */
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+/* กล่องสี่เหลี่ยมสีฟ้าใส่โลโก้ */
+.logo-icon {
+    background: var(--primary);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* ส่วนแสดงสถานะเชื่อมต่อและเวลา (มุมขวา) */
+.status-bar {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+/* ป้ายสถานะ Online สีเขียว */
+#connection-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ecfdf5; /* พื้นหลังเขียวอ่อน */
+    color: var(--success); /* ตัวหนังสือเขียวเข้ม */
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#time-value {
+    color: var(--text-sub);
+    font-variant-numeric: tabular-nums; 
+}
+
+/* ========================================= */
+/* 4. ส่วนแสดงค่า Sensor (Data Cards) */
+/* ========================================= */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary);
+}
+
+/* วงกลมไอคอนในการ์ด */
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.card-info h3 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    font-weight: 400;
+}
+
+/* 🌡️ [จุดแก้ไข] ตัวเลขค่า Sensor ตัวใหญ่ๆ */
+.data-value {
+    margin: 5px 0 0 0;
+    font-size: 1.5rem; /* 👈 แก้ตรงนี้! ถ้าอยากให้เลขใหญ่ขึ้น (เช่น 3rem) */
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.unit {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+/* ========================================= */
+/* 5. ส่วนแสดงผลหลัก (กล้องซ้าย - ปุ่มขวา) */
+/* ========================================= */
+.main-content {
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;       
+    gap: 20px;                 
+    width: 100%;
+}
+
+.camera-section {
+    width: 100%;
+}
+
+.section-header {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* กรอบแสดงกล้อง */
+.main-camera-view {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden; 
+    box-shadow: var(--shadow-card);
+    background: #000;
+    aspect-ratio: 16/9; /* บังคับสัดส่วนภาพเป็น 16:9 */
+}
+
+.main-realtime-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* ========================================= */
+/* 6. ป้ายบอกสถานะทับบนกล้อง (Overlays) */
+/* ========================================= */
+.parking-overlays {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+}
+
+/* รูปทรงป้าย (แคปซูล) */
+.divider {
+    position: absolute;
+    top: 20px;
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%); 
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 📌 [จุดแก้ไข] กำหนดตำแหน่งซ้าย-ขวา ของป้าย P-01 */
+/* แก้เลข % เพื่อขยับป้ายให้ตรงกับรถในกล้องครับ */
+#p-01 { left: 15%; } 
+#p-02 { left: 50%; }
+#p-03 { left: 80%; }
+#p-04 { left: 68%; }
+#p-05 { left: 84%; }
+
+/* สีเขียว (ว่าง) */
+.available {
+    color: var(--success);
+    border: 2px solid transparent;
+}
+.available i { color: var(--success); }
+
+/* สีแดง (มีรถ) */
+.occupied {
+    color: var(--danger);
+    border: 2px solid var(--danger);
+    background: #fff;
+}
+.occupied i { color: var(--danger); }
+
+/* ========================================= */
+/* 7. ส่วนควบคุม (Controller Right Panel) */
+/* ========================================= */
+.control-section {
+    background: #f9fafb;
+    border-radius: var(--radius-md);
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 500px; 
+    margin-top: 0;    
+}
+
+/* ปุ่ม Auto Mode (ไล่เฉดสี) */
+.btn-auto {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    transition: 0.2s;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.btn-auto:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* กรอบปุ่มบังคับกล้อง (Joystick) */
+.joystick-ui {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); 
+}
+
+/* ปุ่มวงกลม ซ้าย-ขวา */
+.btn-cam {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: var(--text-sub);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-cam:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-cam.main-btn {
+    width: auto;
+    padding: 0 20px;
+    border-radius: 25px;
+}
+
+/* ========================================= */
+/* 8. การแสดงผลบนมือถือ (Responsive Design) */
+/* ========================================= */
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr; 
+    }
+
+    header {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .status-bar {
+        text-align: left;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container {
+        padding: 20px; 
+    }
+}

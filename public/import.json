@@ -1,0 +1,11 @@
+{
+  "sensors": {
+    "environment": {
+      "pressure": 300,
+      "temperature": 25,
+      "humidity": 60,
+      "time":50,
+      "air": 35
+    }
+  }
+}
